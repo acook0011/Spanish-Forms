@@ -111,9 +111,10 @@ public class PresentTense
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
             conj = base + "ais";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
-            inf.substring(inf.length()-2,inf.length()).equals("ir"))
+        if (inf.substring(inf.length()-2,inf.length()).equals("er"))
             conj = base + "eis";
+        if (inf.substring(inf.length()-2,inf.length()).equals("ir"))
+            conj = base + "is";
         return conj;
     }
     
