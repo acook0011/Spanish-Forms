@@ -12,6 +12,7 @@ public class FindConjugation
     public static void main(String[]args){
      Scanner reader = new Scanner(System.in);
      String infinitive; 
+     Present conj = new Present();
      Boolean haveVerb = true;
      // Goes until user quits
         while (haveVerb){
@@ -34,51 +35,33 @@ public class FindConjugation
                 vLength = infinitive.length();
         }
         
+        // Select tense
+        System.out.println(menuT() + "Please select one of the options [1-2]: ");
+        int tense = reader.nextInt();
+        while (tense < 1 || tense > 7){ // Checks if in range of options
+            System.out.print("Error: Not within specified range [1-2]. Try again: ");
+            tense = reader.nextInt();
+        }
+        
         // Select subject & plurality
-        System.out.println(menu() + "Please select one of the options [1-7]:");
+        System.out.println(menuF() + "Please select one of the options [1-7]:");
         int subject = reader.nextInt();
         while (subject < 1 || subject > 7){ // Checks if in range of options
             System.out.println("Error: Not within specified range [1-7]. Try again:");
             subject = reader.nextInt();
         }
-        
-        // 'Yo' choice
-        if (subject == 1){
-            System.out.println(firstS(infinitive));
+        // 'Present' choice
+        if (tense == 1){
+            Prese(subject, infinitive);
         }
-        // 'Tú' choice
-        if (subject == 2){
-            System.out.println(secondS(infinitive));
-        }
-        // 'Él/Ella/Usted' choice
-        if (subject == 3){
-            System.out.println(thirdS(infinitive));
-            }
-        // 'Nosotros/as' choice
-        if (subject == 4){
-            System.out.println(firstP(infinitive));
-        }
-        // 'Vosotros/as' choice
-        if (subject == 5){
-            System.out.println(secondP(infinitive));
-        }
-        // 'Ellos/Ellas/Ustedes' choice
-        if (subject == 6){
-            System.out.println(thirdP(infinitive));
-        }
-        // 'All' choice
-        if (subject == 7){
-            System.out.println(firstS(infinitive) +
-                               secondS(infinitive) +
-                               thirdS(infinitive) +
-                               firstP(infinitive) +
-                               secondP(infinitive) +
-                               thirdP(infinitive));
+        // 'Preterite' choice
+        if (tense == 2){
+            Prete(subject, infinitive);
         }
         
         String contChoice = null;
-        reader.nextLine(); // Clear
-        System.out.println("\nDo you have more verbs? [Y/N]");
+        reader.nextLine(); // Clears
+        System.out.println("Do you have more verbs? [Y/N]");
         contChoice = reader.nextLine();
         if (contChoice.equalsIgnoreCase("n") || contChoice.equalsIgnoreCase("no")){
             System.out.println("Good luck with your Spanish classes.");
@@ -87,7 +70,15 @@ public class FindConjugation
      }
     }
     
-    public static String menu(){
+    // Menu of tenses
+    public static String menuT(){
+        return "1) Present\n" +
+               "2) Preterite\n";
+        // More added as program updated
+    }
+    
+    // Menu of persons/plurality
+    public static String menuF(){
         return "1) Yo\n" +
                "2) Tú\n" +
                "3) Él/Ella/Usted\n" +
@@ -97,69 +88,79 @@ public class FindConjugation
                "7) All\n";
     }
     
-    public void checkLength(){
-        
+    // Present conjugations
+    public static void Prese(int subject, String infinitive){
+        Present conj = new Present();      
+        // 'Yo' choice
+        if (subject == 1){
+            System.out.println(conj.firstS(infinitive));
+        }
+        // 'Tú' choice
+        if (subject == 2){
+            System.out.println(conj.secondS(infinitive));
+        }
+        // 'Él/Ella/Usted' choice
+        if (subject == 3){
+            System.out.println(conj.thirdS(infinitive));
+            }
+        // 'Nosotros/as' choice
+        if (subject == 4){
+            System.out.println(conj.firstP(infinitive));
+        }
+        // 'Vosotros/as' choice
+        if (subject == 5){
+            System.out.println(conj.secondP(infinitive));
+        }
+        // 'Ellos/Ellas/Ustedes' choice
+        if (subject == 6){
+            System.out.println(conj.thirdP(infinitive));
+        }
+        // 'All' choice
+        if (subject == 7){
+            System.out.println(conj.firstS(infinitive) + "\n" +
+                               conj.secondS(infinitive) + "\n" +
+                               conj.thirdS(infinitive) + "\n" +
+                               conj.firstP(infinitive) + "\n" +
+                               conj.secondP(infinitive) + "\n" +
+                               conj.thirdP(infinitive) + "\n");
+        }
     }
     
-    public static String firstS(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = base + "o";
-        return conj;
-    }
-    
-    public static String secondS(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = null;
-        if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "as";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
-            inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "es";
-        return conj;
-    }
-    
-    public static String thirdS(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = null;
-        if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "a";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
-            inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "e";
-        return conj;
-    }
-    
-    public static String firstP(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = null;
-        if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "amos";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
-            inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "emos";
-        return conj;
-    }
-    
-    public static String secondP(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = null;
-        if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "áis";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er"))
-            conj = base + "éis";
-        if (inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "ís";
-        return conj;
-    }
-    
-    public static String thirdP(String inf){
-        String base = inf.substring(0,inf.length()-2);
-        String conj = null;
-        if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "an";
-        if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
-            inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "en";
-        return conj;
+    // Preterite Conjugations
+    public static void Prete(int subject, String infinitive){
+        Preterite conj = new Preterite();      
+        // 'Yo' choice
+        if (subject == 1){
+            System.out.println(conj.firstS(infinitive));
+        }
+        // 'Tú' choice
+        if (subject == 2){
+            System.out.println(conj.secondS(infinitive));
+        }
+        // 'Él/Ella/Usted' choice
+        if (subject == 3){
+            System.out.println(conj.thirdS(infinitive));
+            }
+        // 'Nosotros/as' choice
+        if (subject == 4){
+            System.out.println(conj.firstP(infinitive));
+        }
+        // 'Vosotros/as' choice
+        if (subject == 5){
+            System.out.println(conj.secondP(infinitive));
+        }
+        // 'Ellos/Ellas/Ustedes' choice
+        if (subject == 6){
+            System.out.println(conj.thirdP(infinitive));
+        }
+        // 'All' choice
+        if (subject == 7){
+            System.out.println(conj.firstS(infinitive) + "\n" +
+                               conj.secondS(infinitive) + "\n" +
+                               conj.thirdS(infinitive) + "\n" +
+                               conj.firstP(infinitive) + "\n" +
+                               conj.secondP(infinitive) + "\n" +
+                               conj.thirdP(infinitive) + "\n");
+        }
     }
 }
