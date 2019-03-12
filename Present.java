@@ -2,8 +2,8 @@
 /**
  * Write a description of class PresentTense here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @aj
+ * @present
  */
 public class Present
 {    

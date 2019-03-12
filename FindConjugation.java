@@ -36,10 +36,10 @@ public class FindConjugation
         }
         
         // Select tense
-        System.out.println(menuT() + "Please select one of the options [1-2]: ");
+        System.out.println(menuT() + "Please select one of the options [1-3]: ");
         int tense = reader.nextInt();
-        while (tense < 1 || tense > 7){ // Checks if in range of options
-            System.out.print("Error: Not within specified range [1-2]. Try again: ");
+        while (tense < 1 || tense > 3){ // Checks if in range of options
+            System.out.print("Error: Not within specified range [1-3]. Try again: ");
             tense = reader.nextInt();
         }
         
@@ -58,22 +58,30 @@ public class FindConjugation
         if (tense == 2){
             Prete(subject, infinitive);
         }
+        // 'Imperfect' choice
+        if (tense == 3){
+            Impe(subject, infinitive);
+        }
         
         String contChoice = null;
         reader.nextLine(); // Clears
         System.out.println("Do you have more verbs? [Y/N]");
         contChoice = reader.nextLine();
         if (contChoice.equalsIgnoreCase("n") || contChoice.equalsIgnoreCase("no")){
-            System.out.println("Good luck with your Spanish classes.");
+            System.out.println("Good luck with your Spanish work.");
             haveVerb = false;
         }
      }
     }
     
+    // Menu of moods(?)
+    // Figure out how to easily select mood, tense, and person/plurality
+    
     // Menu of tenses
     public static String menuT(){
         return "1) Present\n" +
-               "2) Preterite\n";
+               "2) Preterite\n" +
+               "3) Imperfect\n";
         // More added as program updated
     }
     
@@ -129,6 +137,43 @@ public class FindConjugation
     // Preterite Conjugations
     public static void Prete(int subject, String infinitive){
         Preterite conj = new Preterite();      
+        // 'Yo' choice
+        if (subject == 1){
+            System.out.println(conj.firstS(infinitive));
+        }
+        // 'Tú' choice
+        if (subject == 2){
+            System.out.println(conj.secondS(infinitive));
+        }
+        // 'Él/Ella/Usted' choice
+        if (subject == 3){
+            System.out.println(conj.thirdS(infinitive));
+            }
+        // 'Nosotros/as' choice
+        if (subject == 4){
+            System.out.println(conj.firstP(infinitive));
+        }
+        // 'Vosotros/as' choice
+        if (subject == 5){
+            System.out.println(conj.secondP(infinitive));
+        }
+        // 'Ellos/Ellas/Ustedes' choice
+        if (subject == 6){
+            System.out.println(conj.thirdP(infinitive));
+        }
+        // 'All' choice
+        if (subject == 7){
+            System.out.println(conj.firstS(infinitive) + "\n" +
+                               conj.secondS(infinitive) + "\n" +
+                               conj.thirdS(infinitive) + "\n" +
+                               conj.firstP(infinitive) + "\n" +
+                               conj.secondP(infinitive) + "\n" +
+                               conj.thirdP(infinitive) + "\n");
+        }
+    }
+    
+    public static void Impe(int subject, String infinitive){
+        Imperfect conj = new Imperfect();      
         // 'Yo' choice
         if (subject == 1){
             System.out.println(conj.firstS(infinitive));

@@ -1,20 +1,20 @@
 
 /**
- * Write a description of class Preterite here.
+ * Write a description of class Imperfect here.
  *
  * @aj
- * @preterite
+ * @imperfect
  */
-public class Preterite
+public class Imperfect
 {
     public String firstS(String inf){
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "é";
+            conj = base + "aba";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "í";
+            conj = base + "ía";
         return conj;
     }
     
@@ -22,10 +22,10 @@ public class Preterite
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "aste";
+            conj = base + "abas";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "iste";
+            conj = base + "ías";
         return conj;
     }
     
@@ -33,10 +33,10 @@ public class Preterite
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "ó";
+            conj = base + "aba";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "ió";
+            conj = base + "ía";
         return conj;
     }
     
@@ -44,10 +44,10 @@ public class Preterite
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "amos";
+            conj = base + "ábamos";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "imos";
+            conj = base + "iamos";
         return conj;
     }
     
@@ -55,10 +55,10 @@ public class Preterite
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "asteis";
+            conj = base + "abais";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "isteis";
+            conj = base + "íais";
         return conj;
     }
     
@@ -66,10 +66,10 @@ public class Preterite
         String base = inf.substring(0,inf.length()-2);
         String conj = null;
         if (inf.substring(inf.length()-2,inf.length()).equals("ar"))
-            conj = base + "aron";
+            conj = base + "aban";
         if (inf.substring(inf.length()-2,inf.length()).equals("er") ||
             inf.substring(inf.length()-2,inf.length()).equals("ir"))
-            conj = base + "ieron";
+            conj = base + "ían";
         return conj;
     }
 }
