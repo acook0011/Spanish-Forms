@@ -63,13 +63,24 @@ public class FindConjugation
             Impe(subject, infinitive);
         }
         
+        Boolean chose = false;
         String contChoice = null;
         reader.nextLine(); // Clears
         System.out.println("Do you have more verbs? [Y/N]");
-        contChoice = reader.nextLine();
-        if (contChoice.equalsIgnoreCase("n") || contChoice.equalsIgnoreCase("no")){
+        
+        while (!chose){
+         contChoice = reader.nextLine();
+         if (contChoice.equalsIgnoreCase("n") || contChoice.equalsIgnoreCase("no")){
             System.out.println("Good luck with your Spanish work.");
             haveVerb = false;
+            chose = true;
+         }
+         else if (contChoice.equalsIgnoreCase("y") || contChoice.equalsIgnoreCase("yes")){
+            chose = true;
+         }
+         else {
+            System.out.println("Error: Please state whether more verbs or not. [Y/N]");
+         }
         }
      }
     }
